@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Tabela.css">
+    <title>Folha de Ponto</title>
+</head>
+<body>
+    <div class="page" id="content">
+        <table class="cabecalho">
+            <tr>
+                <th colspan="9">FOLHA PONTO</th>
+            </tr>
+            <tr>
+                <td>N° de Ordem</td>
+                <td colspan="7"> <b>SECRETARIA DE ESTADO DA EDUCAÇÃO</b></td>
+            </tr>
+            <tr>
+                <td colspan="9">ENDEREÇO: AV. ÁGUA VERDE 2140 CURITIBA - PR</td>
+            </tr>
+            <tr>
+                <td>CNPJ: 76,419,965/0001-21</td>
+                <td colspan="7">ATIVIDADE: ENSINO PÚBLICO ESTADUAL</td>
+            </tr>
+            <tr>
+                <td colspan="9">PROFESSOR: <span id="professorNome"></span></td>
+            </tr>
+            <tr>
+                <td id="rg">RG:</td>
+                <td id="cpf">CPF:</td>
+                <td id="ctps">N°/SÉRIE CTPS:</td>
+                <td id="nivel">NÍVEL:</td>
+                <td id="lf">L.F:</td>
+                <td id="ch">C.H:</td>
+                <td id="ha">H.A:</td>
+            </tr>
+            <tr>
+                <td id="turno">TURNO:</td>
+                <td colspan="7" id="disciplina">DISCIPLINA(S):</td>
+            </tr>
+            <tr>
+                <th colspan="9" id="mesAno">Jornada Diária de Trabalho Mês: </th>
+            </tr>
+            <tr>
+                <td>LOCAL TRABALHO: <b>JOÃO M.MONDRONE, C E-E FUND MED PRO NOR</b></td>
+                <td colspan="7">NRE: <b>FOZ DO IGUAÇU</b></td>
+            </tr>
+            <tr>
+                <td>ENDEREÇO: <b>RUA MATO GROSSO, 2233</b></td>
+                <td colspan="7">MUNIC.: <b>MEDIANEIRA</b></td>
+            </tr>
+        </table>
+        <table class="mes">
+            <tr>
+                <th colspan="9">Jornada Diária de Trabalho Mês: Março Ano 2025</th>
+            </tr>
+            <tr>
+                <td>Dias</td>
+                <td>1° Aula</td>
+                <td>2° Aula</td>
+                <td>3° Aula</td>
+                <td>4° Aula</td>
+                <td>5° Aula</td>
+                <td>6° Aula</td>
+                <td>Assinatura</td>
+                <td>Observação</td>
+            </tr>
+            <tr class="repetir">
+            </tr>
+        </table>
+        <table class="rodape">
+            <tr>
+                <th colspan="5"><b>RESUMO GERAL</b></th>
+            </tr>
+            <tr>
+                <td>HORAS NORMAIS</td>
+                <td>HORAS NOTURNAS</td>
+                <td>FALTAS JUSTIFICADAS</td>
+                <td>FALTAS A DESCONTAR</td>
+                <td>VISTO</td>
+            </tr>
+            <tr>
+                <td colspan="5"> FALTAS / DIAS <hr>
+                <br>
+                OBSERVAÇÕES:
+                </td>
+            </tr>
+        </table>
+        <table class="assinaturas">
+            <tr>
+                <th colspan="3"><b>ASSINATURAS</b></th>
+            </tr>
+            <tr>
+                <td>Empregado ou responsável <br>
+                ______________________
+            <br>
+                </td>
+                <td>
+                    Secretario(a) <br>                    ______________________
+                </td>
+                <td>Diretor(a) <br>
+                    ______________________</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="btn-container">
+        <button class="btn-pdf" onclick="gerarPDF()">Gerar PDF</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        function gerarPDF() {
+            const content = document.getElementById("content");
+
+            html2canvas(content, {
+                scale: 1,
+                useCORS: true
+            }).then(canvas => {
+                const imgData = canvas.toDataURL("image/png");
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF("p", "mm", "a4");
+
+                const imgWidth = 210;
+                const pageHeight = 297;
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+                pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+                pdf.save("Folha_Ponto.pdf");
+            });
+        }
+    </script>
+<script src="main.js"></script>
+</body>
+</html>

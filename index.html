@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Folha de Ponto</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Ficha Cadastral</h2>
+        <form id="cadastroForm">
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" name="nome" required>
+            <hr>
+            <label for="rg">RG:</label>
+            <input type="text" id="rg" name="rg" required>
+            <hr>
+            <label for="cpf">CPF:</label>
+            <input type="text" id="cpf" name="cpf" required>
+            <hr>
+            <label for="ctps">N° / Série: CTPS:</label>
+            <input type="text" id="ctps" name="ctps" required>
+            <hr>
+            <label for="nivel">Nível:</label>
+            <input type="text" id="nivel" name="nivel" required>
+            <hr>
+            <label for="lf">L.F:</label>
+            <input type="text" id="lf" name="lf" required>
+            <hr>
+            <label for="ch">C.H:</label>
+            <input type="text" id="ch" name="ch" required>
+            <hr>
+            <label for="ha">H.A:</label>
+            <input type="text" id="ha" name="ha" required>
+            <hr>
+            <label for="turno">Turno:</label>
+            <select name="turno" id="turno">
+                <option value="matutino">Matutino</option>
+                <option value="vespertino">Vespertino</option>
+                <option value="noturno">Noturno</option>
+            </select>
+            <hr>
+            <label for="disciplina">Disciplinas:</label>
+            <input type="text" id="disciplina" name="disciplina" required>
+            <hr>
+            <label for="mes">Mês:</label>
+            <select name="mes" id="mes">
+                <option value="janeiro">Janeiro</option>
+                <option value="fevereiro">Fevereiro</option>
+                <option value="marco">Março</option>
+                <option value="abril">Abril</option>
+                <option value="maio">Maio</option>
+                <option value="junho">Junho</option>
+                <option value="julho">Julho</option>
+                <option value="agosto">Agosto</option>
+                <option value="setembro">Setembro</option>
+                <option value="outubro">Outubro</option>
+                <option value="novembro">Novembro</option>
+                <option value="dezembro">Dezembro</option>
+            </select>
+            <hr>
+            <button type="button" id="gerarFolha">Gerar PDF</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById("gerarFolha").addEventListener("click", function () {
+            const dados = {
+                nome: document.getElementById("nome").value,
+                rg: document.getElementById("rg").value,
+                cpf: document.getElementById("cpf").value,
+                ctps: document.getElementById("ctps").value,
+                nivel: document.getElementById("nivel").value,
+                lf: document.getElementById("lf").value,
+                ch: document.getElementById("ch").value,
+                ha: document.getElementById("ha").value,
+                turno: document.getElementById("turno").value,
+                disciplina: document.getElementById("disciplina").value,
+                mes: document.getElementById("mes").value
+            };
+        
+            sessionStorage.setItem("dadosFicha", JSON.stringify(dados));
+        
+            window.location.href = "tabela.html";
+        });
+    </script>        
+</body>
+</html>

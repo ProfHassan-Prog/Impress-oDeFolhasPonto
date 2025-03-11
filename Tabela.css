@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+}
+
+.page {
+    width: 21cm;
+    height: 29.7cm;
+    padding: 1cm;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background: white;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0; 
+}
+
+.cabecalho th, .cabecalho td{
+    text-align: left;
+}
+th, td {
+    border: 1px solid black;
+    padding: 4px;
+    text-align: center; 
+    font-size: 12px;
+    vertical-align: middle; 
+    white-space: nowrap;
+}
+
+.rg-cpf td {
+    width: calc( 100%/ 9);
+}
+
+.cabecalho th {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center; 
+}
+
+.cabecalho, .mes, .rodape, .assinaturas {
+    max-width: 19cm;
+    margin: 0;
+}
+
+.mes {
+    table-layout: auto; 
+}
+
+.mes th, .cabecalho th, .assinaturas th, .rodape th {
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+@media print {
+    body {
+        width: 21cm;
+        height: 29.7cm;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .page {
+        width: 21cm;
+        height: 29.7cm;
+        page-break-after: always;
+    }
+
+    table {
+        width: 100%;
+    }
+}
